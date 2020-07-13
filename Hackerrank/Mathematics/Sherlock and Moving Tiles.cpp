@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//physics, time + distance + area matching
+
 int main(){
 	
 	long long L, S1, S2, q, area; 

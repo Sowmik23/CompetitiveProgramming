@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//A single line containing the number of rocks.
+//GCD || Divisors
 
 #define ll long long 
 

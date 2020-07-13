@@ -2,6 +2,10 @@
 
 using namespace std;
 
+//how many different patterns of light can the
+// serial light bulb set produce
+
+
 int main(){
 	
 	int t, n;

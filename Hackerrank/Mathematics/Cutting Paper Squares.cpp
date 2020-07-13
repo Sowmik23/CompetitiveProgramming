@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//minimum number of cuts needed to cut the entire paper into 1x1 squares.
+
 int main()
 {
 	long long n,m;

@@ -2,6 +2,11 @@
 
 using namespace std;
 
+//given l and b
+//output: each piece is a square having maximum possible side 
+//length with no left over piece of bread.
+
+
 int gcd(int a, int b){
 	int x = a%b;
 	if(x==0) return b;

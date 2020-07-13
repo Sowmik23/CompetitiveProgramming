@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//What is the number of divisors of n that are divisible by 2
 
 int main(){
 	

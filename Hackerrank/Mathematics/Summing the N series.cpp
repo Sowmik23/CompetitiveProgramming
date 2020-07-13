@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//series
+
 int main()
 {
 	long long t, n;

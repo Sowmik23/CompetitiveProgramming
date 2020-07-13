@@ -4,6 +4,9 @@ using namespace std;
 
 //this determines one primitive root of a prime number
 
+//The smallest primitive root of prime p.
+//The total number of primitive roots of prime p .
+
 
 //This will provide the result of (base^exp)%mod in
 // logarithmic time rather than quadratic time 

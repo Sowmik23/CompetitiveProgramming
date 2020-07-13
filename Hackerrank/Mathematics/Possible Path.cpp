@@ -2,6 +2,10 @@
 
 using namespace std;
 
+//grid reachable problem
+//GCD || Divisor
+
+
 #define ll unsigned long long 
 
 int main(){

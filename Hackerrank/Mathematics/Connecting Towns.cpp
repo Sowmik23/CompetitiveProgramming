@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//Total number of routes from T1 to Tn modulo 1234567
+//Combination- permutation
+
 int main()
 {
 	long long int t, n, x;

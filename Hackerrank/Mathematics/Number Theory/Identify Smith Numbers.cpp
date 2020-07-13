@@ -4,6 +4,9 @@ using namespace std;
 
 #define ll long long
 
+//identify if smith number
+//number digits summation == all its factors digits summation
+
 vector<ll>factors;
 
 ll sumofPrimeFactors(ll n){

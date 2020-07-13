@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
+//minimum number of supply packages Luke must drop.
 int main(){
 	
 	int n,m,res;

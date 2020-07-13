@@ -4,6 +4,7 @@ using namespace std;
 
 #define ll long long 
 
+//constructing a number by digit summation mod 3
 
 int main(){
 	

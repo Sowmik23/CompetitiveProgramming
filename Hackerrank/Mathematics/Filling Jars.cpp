@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//average number of candies across n jars,
+// rounded down to the nearest integer.
+
 int main(){
 	
 	long long n,m, a, b, k, total_candie=0;

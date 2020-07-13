@@ -2,6 +2,10 @@
 
 using namespace std;
 
+//maximum number of pieces that can be obtained for each test
+//dividing cake 
+
+
 int main(){
 	
 	int t;

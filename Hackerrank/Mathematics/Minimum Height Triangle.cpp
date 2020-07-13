@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+
+//print a single integer , denoting the minimum height of a triangle with base  and area at least .
 
 int lowestTriangle(int base, int area){
 	int x;

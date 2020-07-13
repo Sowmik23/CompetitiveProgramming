@@ -4,6 +4,8 @@ using namespace std;
 
 #define ll long long
 
+//Euler formula
+
 //https://mathworld.wolfram.com/EulersCriterion.html
 
 

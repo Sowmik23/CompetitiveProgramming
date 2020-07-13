@@ -13,6 +13,8 @@ int main()
 	scanf("%d",&t);
 	char str[15];
 	
+	ofstream myfile ("passwords.txt");
+	
 	while(t--)
 	{
 		cnt=0;
@@ -24,8 +26,10 @@ int main()
 		while(next_permutation(str,str+l,comp))
 		{
 			cnt++;
+			//myfile<<str;
 			cout<<str<<endl;
 		}
+		myfile.close();
 		cout<<endl;
 		printf("Total result : %d\n",cnt);
 	}

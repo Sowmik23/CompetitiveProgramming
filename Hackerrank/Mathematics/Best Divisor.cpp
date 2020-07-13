@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//The set of divisors of  can be expressed as {1,2,3,4,5,6,12} .
+// The divisor whose digits sum to the largest number is 6
+// (which, having only one digit, sums to itself). 
+//Thus, we print 6 as our answer.
 
 int compute(int x, int y){
 	int sum1=0, sum2=0;

@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//maximum number of unique prime factors for any number
+// in the inclusive range 1 to n 
+
 //int prime[50];
 /*
 void primes(){

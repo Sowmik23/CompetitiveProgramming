@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+
+//Print the number of handshakes for each test-case in a new line.
 
 int main()
 {

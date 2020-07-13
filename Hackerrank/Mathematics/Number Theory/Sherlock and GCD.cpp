@@ -2,6 +2,9 @@
 
 using namespace std;
 
+
+//sub set GCD() yes/no output
+
 int main(){
 	
 	int t, n;

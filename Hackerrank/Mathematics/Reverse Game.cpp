@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//implementation
+//reverse array position
+
 int main(){
 	
 	int t, n, k, ans;
