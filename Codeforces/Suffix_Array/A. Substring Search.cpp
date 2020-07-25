@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//suffix array construction
-//O(nlogn) approach
+//substring search
+
 
 vector<int> sort_cyclic_shifts(string const& s) {
 	int n = s.size();
@@ -65,14 +65,50 @@ int main(){
 	
 	vector <int> k = suffix_array_construction(str);
 	
-	cout<<k.size();
+	int len = k.size();
+	/*
+	cout<<len;
 	
 	for(auto i : k){
 		cout<<" "<<i;
 	}
 	cout<<endl;
+	*/
+	
+	int n;
+	string x;
+	
+	cin>>n;
+	while(n--){
+		cin>>x;
+		
+		int m = x.size();
+		bool flag = false;
+		
+		//binary search
+		int low = 0, high=len-1, mid;
+		while(low<=high){
+			mid = (low+high)/2;
+			
+			char xx[m+1];
+			strcpy(xx, x.c_str());
+			char yy[len];
+			strcpy(yy, str.c_str());
+			
+			int res = strncmp(xx, yy+k[mid], m);
+			//cout<<res<<endl;
+			
+			if(res==0) {
+				flag=true;
+				break;
+			}
+			if(res>0) low = mid+1;
+			else high = mid - 1;
+		}
+		if(flag==true) cout<<"Yes"<<endl;
+		else cout<<"No"<<endl;
+	}
 	
 	return 0;
 }
-
 
