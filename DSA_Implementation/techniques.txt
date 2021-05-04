@@ -1,0 +1,29 @@
+
+
+1. First step: think solving using brute force/naive approach. It generally : O(n^2)
+2. Second step: think solving by two pointer: it reduces cost of brute force . It generally: O(n+m)
+3. Third step: if complexity needs greater than O(n). then sort the input array. then binary search. so O(n*logn)
+4. Fourth step: if complexity requirement is less than equal O(n) then use hashing. 
+
+5. 
+
+
+
+******************&&&&&&&&&&&&&&&&&&***********************
+
+INT_MAX is +2147483647
+INT_MIN is -2147483648
+
+finding length of integer value = log10(x)+1; or int length = to_string(input).length();
+
+
+
+
+#################
+
+Heap:(implementation)
+	binary-tree
+	max-heap  (using array, using vector)
+	min-heap  (using array, using vector)
+	heap-sort 
+	priority-queue

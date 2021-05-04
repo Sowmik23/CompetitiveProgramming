@@ -1,0 +1,211 @@
+***************vector**************
+
+vector.push_back(value);  //insert last
+vector.insert(vector.begin(), value) //insert first
+int x = vector.back() //last value in vector
+vector.pop_back() //pop last value from vector	
+
+
+1. vectorname.erase(position)
+2. vectorname.erase(startingposition, endingposition)
+
+
+
+	1. sort(vector.begin(), vector.end());
+	2. reverse(vector.begin(), vector.end());
+
+	3. std:: rotate(vector.begin(), vector.begin()+k , vector.end());  //left k rotation
+	4. std:: rotate(vector.begin(), vector.begin()+vector.size()-k, vector.end()); //right k rotation
+
+#copy a set into a vector: here we copy input into output vector
+
+	std::vector<double> output(input.size());
+	std::copy(input.begin(), input.end(), output.begin());
+
+#another way: 
+	Here, set<int> st;
+	return vector<int> (st.begin(), st.end());
+
+
+
+#find element from vector:
+	it = find(v.begin(), v.end(), stones[i]);
+	if(it!=v.end()) cnt++;	
+
+
+
+
+**************list*****************
+
+************unordered_list*********
+
+
+*************set*******************
+
+# Reverse print a set
+# Access the last element of a set
+
+	set<int> st;
+        for(int i=0;i<nums.size();i++){
+            st.insert(nums[i]);
+        }
+        int mx = INT_MIN, sndmx = INT_MIN, trdmx = INT_MIN;
+        
+        //for(auto i: st) cout<<i<<" ";
+        //cout<<*st.rbegin()<<endl;
+        if(st.size()<3) return *st.rbegin();  //return last element of the set;
+        else {
+            mx = *st.rbegin();
+            set<int>::reverse_iterator it;
+            int flag1=0, flag2=0;
+            
+            for(it=st.rbegin(); it!=st.rend();it++){
+                if(*it<mx and flag1==0){
+                    sndmx = *it;
+                    flag1=1;
+                }
+                else if(*it<mx and flag1==1 and *it<sndmx){
+                    trdmx = *it;
+                    break;
+                }
+            }
+            return trdmx;
+
+
+
+
+
+************unordered_set**********
+
+	unordered_set<char> ust;
+        ust.insert(value);
+#find value form unordered_set:
+	for(auto i: nums)
+		if(ust.find(i)!=ust.end()) cnt++; //that means i is in ust;
+
+
+*************map*******************
+
+
+
+*************unordered_map*********
+
+
+*************stringstream**********
+
+
+
+*************priority_queue*************
+priority_queue<int> pq; //max-heap
+priority_queue<int, vector<int>, greater<int>> pq;  //min-heap
+
+pq.push(3);
+pq.top();
+pq.pop()  //deletes first/top element
+pq.empty() //checks wheather it is empty or not
+pq.size()  //size
+pq.swap() //used to swap the contents of one priority queue with another priority queue of same type and size.
+pq.emplace() //used to insert a new element into the priority queue container, the new element is added to the top of the priority queue.
+
+
+priority_queue <int> q;
+// use it
+q = priority_queue <int>(); // reset it
+
+
+******************Heap in C++ STL*******************
+vector<int> v1;
+
+Converting vector into a heap
+using make_heap()
+    	make_heap(v1.begin(), v1.end());
+    
+ // Displaying the maximum element of heap
+    // using front()
+    v1.front() 
+
+push_heap(): 
+v1.push_back(50);
+// using push_heap() to reorder elements
+    push_heap(v1.begin(), v1.end());
+
+pop_heap()
+// using pop_heap() to delete maximum element
+    pop_heap(v1.begin(), v1.end());
+    v1.pop_back();
+    
+sort_heap() : after sorting it will no longer a heap
+// sorting heap using sort_heap()
+    sort_heap(v1.begin(), v1.end());
+
+is_heap()
+// Checking if container is heap
+    // using is_heap()
+    is_heap(v1.begin(), v1.end())?
+    cout << "The container is heap ":
+    cout << "The container is not heap";
+
+is_heap_until()
+// using is_heap_until() to check position 
+    // till which container is heap
+    auto it = is_heap_until(v1.begin(), v1.end());
+    
+    // Displaying heap range elements
+    cout << "The heap elements in container are : ";
+    for (it1=v1.begin(); it1!=it; it1++)
+       cout << *it1 << " ";
+
+///Example of heap using above method of STL
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        
+        make_heap(stones.begin(), stones.end());
+        
+        int x, y;
+        
+        while(stones.size()>1) {
+            y = stones.front();
+            pop_heap(stones.begin(), stones.end());
+            stones.pop_back();
+            
+            x = stones.front();
+            
+            pop_heap(stones.begin(), stones.end());
+            stones.pop_back();
+            
+            stones.push_back(y-x);
+            push_heap(stones.begin(), stones.end());
+            
+           
+        }
+        
+        int res = stones.front();
+        pop_heap(stones.begin(), stones.end());
+        stones.pop_back();
+
+        
+        
+        return res;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
