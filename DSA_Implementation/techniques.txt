@@ -18,6 +18,33 @@ finding length of integer value = log10(x)+1; or int length = to_string(input).l
 
 
 
+sort three numbers: a, b, c in O(1);
+//first sort a, b, c
+        int small, mid, high;
+        small = min(a, min(b, c));
+        high = max(a, max(b, c));
+        mid = (a+b+c)-small-high;
+        
+
+
+
+
+///speedup the code
+
+auto speedup = []() {
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+    return 0;
+}();
+
+
+
+//convert string to integer : int x = stoll(str)
+
+//convert int to string = to_string(x);
+
+
+
 
 #################
 

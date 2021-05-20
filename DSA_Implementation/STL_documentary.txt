@@ -34,6 +34,29 @@ vector.pop_back() //pop last value from vector
 
 
 
+#copy a set into a vector:
+	set<int> st;	
+	vector<int> res(st.size());
+        copy(st.begin(), st.end(), res.begin());
+
+
+
+ // rotating this 2d vector in 90 degree clockwise
+        vector<vector<char>> res;
+        
+        
+        for(int i=0;i<column;i++){
+            
+            vector<char> tmp;
+            for(int j=row-1;j>=0;j--){
+                tmp.push_back(box[j][i]);
+            }       
+            res.push_back(tmp);
+        }
+        
+        
+        
+
 
 **************list*****************
 
@@ -89,6 +112,20 @@ vector.pop_back() //pop last value from vector
 
 
 *************unordered_map*********
+unordered_map<int, int> umap; ///this is like hashMap in java or ther language
+
+#mp.count(key);
+if(umap.count(1))
+    {
+        cout<<"Element Found"<<endl;
+    }
+    else
+    {
+        cout<<"Element Not Found"<<endl;    
+    }
+
+
+
 
 
 *************stringstream**********
@@ -197,7 +234,12 @@ public:
 
 
 
+*********************************************String********************************
 
+
+#substring matching : string s, string t
+	if(s==t.substr(0, s.size()) return true;   //that means s is a substring of t;  
+	substr(initial index, last index) 
 
 
 
