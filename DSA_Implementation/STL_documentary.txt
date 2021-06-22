@@ -245,6 +245,11 @@ public:
 
 
 
+#uppercase to lowercase and lowercase to uppercase convert: using STL
+	transform(su.begin(), su.end(), su.begin(), ::toupper);
+   
+    // using transform() function and ::tolower in STL
+    transform(sl.begin(), sl.end(), sl.begin(), ::tolower);
 
 
 
