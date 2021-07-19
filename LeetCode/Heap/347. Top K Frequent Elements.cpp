@@ -9,7 +9,7 @@ class Solution {
     
 private:
     map<int, int> mp;
-    vector<int> vec;
+or    vector<int> vec;
     
 public:
     //compare function to sort the mp according to greater frequency
