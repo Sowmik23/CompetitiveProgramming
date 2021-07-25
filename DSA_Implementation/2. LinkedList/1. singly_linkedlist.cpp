@@ -46,20 +46,25 @@ class LinkedList{
 	}
 	
 	
-	void deleteValue(int val){ //O(n)
+	void deleteValue(int data){ //O(n)
 		
 		if(head->val==val) head = head->next;
 		else {
-			Node* tmp;
-			tmp = head;
-			while(tmp->next->val!=val){
-				if(tmp->next->next==NULL) break;
-				tmp = tmp->next;
+			Node* curr;
+			curr = head;
+			while(curr->next!=NULL){
+				if(curr->next->val==data){
+					break;
+				}
+				else curr = curr->next;
 			}
-			if(tmp->next->val==val){
-				tmp->next = tmp->next->next;
+			if(curr->next==NULL) {
+				cout<<data<<" not found"<<endl;
 			}
-			else cout<<val<<" not found! and can't delete."<<endl;
+			else if(curr->next->val==data){
+				curr->next = curr->next->next;
+				cout<<"Value deleted successfully!"<<endl;
+			}
 		}
 	}
 	

@@ -27,7 +27,23 @@ int lower_bound(vector<int> nums, int l, int r, int val){
 
 int upper_bound(vector<int> nums, int l, int r, int val){
 	
+	int mid;
+	int low = l, high = r;
 	
+	while(low<high){
+		mid = (low+high)/2;
+		
+		if(nums[mid]>val){
+			high = mid;
+		}
+		else {
+			low = mid + 1;
+		}
+	}
+	if(low<r and nums[low]<=val){
+		low++;
+	}
+	return low;
 }
 
 int main(){

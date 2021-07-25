@@ -68,7 +68,7 @@ class HashTable{
 		return data[idx]->searchList(value);
 	}
 	
-	bool search(string value){
+	bool deleteVal(string value){
 		int idx = abs(hashFunction(value))%this->length;
 		return data[idx]->deleteValue(value);
 	}
