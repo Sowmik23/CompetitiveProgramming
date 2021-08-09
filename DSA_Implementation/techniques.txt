@@ -54,3 +54,55 @@ Heap:(implementation)
 	min-heap  (using array, using vector)
 	heap-sort 
 	priority-queue
+
+###Initialize a 2D vector	
+vector<vector<int>> res(numRows);
+vector<vector<int>> ans(n, vector<int> (n, 0));
+vec = vector<vector<int>> ();
+
+
+###compare the prefix of string with a substring
+if(str.compare(0, test.size(), test)==0) then it proves that str has same prefix as test string.
+
+
+
+####swap two variables without using any tmp variable
+a = 2
+b = 3
+a = a+b
+b = a - b;
+a = a-b;
+
+####and also a popular question is sort a, b, c (three variable)
+
+   lo = min(min(a, b), c);
+   hi = max(max(a, b), c);
+   printf("LOWEST %d\n", lo);
+   printf("MIDDLE %d\n", a+b+c-lo-hi);
+   printf("HIGHEST %d\n", hi);  
+
+###another way:
+if (x > y) swap(x, y);
+if (y > z) swap(y, z)
+if (x > y) swap(x, y);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
