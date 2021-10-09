@@ -79,11 +79,13 @@ void Heapify(int idx){
 	
 
 void deleteH(int val){
-	int p = searchH(val);
-	arr[p] = arr[n];
+	//int p = searchH(val); //always delete max element here, and max is the first element
+	//arr[p] = arr[n];
+	
+	arr[1] = arr[n]; //we insert from first index not 0 index
 	n--;
 	
-	Heapify(p);
+	Heapify(1);
 }
 
 

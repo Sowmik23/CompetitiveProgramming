@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+	#include <bits/stdc++.h>
 using namespace std;
 
 //recursive version
@@ -14,6 +14,7 @@ void postorderTraversal(Node* root){
 //iterative version
 void postorderTraversalIterative(Node* root){
 	
+	if(root==NULL) return {};
 	stack<Node*> stk;
 	stack<int> res;
 	stk.push(root);
