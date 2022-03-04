@@ -8,7 +8,7 @@ using namespace std;
 // 	and O(logn) for recursive implementation for recursion call stack space 
 
 
-//Q. A: Why it contains bug if we calculate mid = (low+high)/2 ? instead
+//Q. A: Why it contains bug if we calculate mid = (low+high)/2 ? instead //integer overflow : if high==INT_MAX
 // mid = low+(high-low)/2 ?
 
 
