@@ -18,7 +18,7 @@ void bucketSort(vector<int> &nums){
 		if(nums[i]>mx) mx = nums[i];
 	}
 	
-	vector<int> bucket[nums.size()];
+	vector<int> bucket[nums.size()+1];
 	 
 	 ///put elements in different buckets
 	for(int i=0;i<nums.size();i++){
