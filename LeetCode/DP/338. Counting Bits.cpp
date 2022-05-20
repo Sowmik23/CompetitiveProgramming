@@ -33,6 +33,16 @@ public:
             }
         }
         return res;
+        
+        
+        //DP: single pass
+        vector<int> res(n+1, 0);
+        res[0] = 0;
+        for(int i=1;i<=n;i++){
+            res[i] = res[i>>1] + (1&i);
+        }
+        
+        return res;
     }
     
 private:

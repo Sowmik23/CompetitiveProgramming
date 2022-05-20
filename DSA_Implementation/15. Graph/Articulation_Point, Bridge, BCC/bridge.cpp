@@ -85,4 +85,14 @@ Input:
 Output: 
 3 4
 0 3
+
+Input:
+4 4
+0 1
+1 2
+2 0
+1 3
+
+output:
+1 3
 * */
