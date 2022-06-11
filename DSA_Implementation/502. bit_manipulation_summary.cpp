@@ -6,6 +6,40 @@ using namespace std;
 //think about bit: O(1) space;
 
 
+///#####Details about Bitset array
+
+///please must read this link:
+/// https://www.geeksforgeeks.org/c-bitset-and-its-application/
+
+///Example
+/*
+	string s1,s2;
+	cin>>s1>>s2;
+
+	//Declaration for bitset type variables
+	bitset<26> b_s1,b_s2;
+
+	// setting the bits in b_s1 for the encountered characters of string s1 
+	for(auto& i : s1)
+	{
+	  if(!b_s1[i-'a'])
+		b_s1[i-'a'] = 1;
+	}
+
+	// setting the bits in b_s2 for the encountered characters of string s2 
+	for(auto& i : s2)
+	{
+	  if(!b_s2[i-'a'])
+		b_s2[i-'a'] = 1;
+	}
+
+   // counting the number of set bits by the "Logical AND"  operation
+   // between b_s1 and b_s2
+   cout<<(b_s1&b_s2).count(); 
+*/
+
+
+
 ///TODO: 00
 /*
  * Swap two numbers without using extra vairiable
@@ -275,26 +309,86 @@ void smallestofTwo2(int a, int b){
  
  
 	
-//07
-
-
-
-
-
-
-//08
-
-
-
-//09
-
-
-
-//10
-
-
-//11
+///TODO: 07
+/*
+ * Count set bits in an integer
+ */
+void countSetBits1(int n){
+	int cnt = 0;
+	for(int i=31;i>=0;i--){
+		if(1&(n>>i)) cnt++;
+	}
+	cout<<"Total set bits: "<<cnt<<endl;
 	
+	cout<<n<<endl;
+	
+	
+	////approach-02;
+	cnt = 0;
+	int mask = 1;
+	for(int i=0;i<32;i++){
+		if(mask & n) cnt++;
+		mask = mask<<1;
+	}
+	cout<<"Total set bits: "<<cnt<<endl;
+	cout<<n<<endl;
+	
+	
+	////approach-03:
+	cnt = 0;
+	for(int i=1;i<=32;i++){
+		if((1<<31) & (n>>i)) cnt++;
+	}
+	cout<<"Total set bits: "<<cnt<<endl;
+	cout<<n<<endl;
+}
+
+
+
+
+///TODO: 08
+
+
+
+///TODO: 09
+
+
+
+///TODO: 10
+
+
+///TODO: 11
+	
+ 
+/// TODO: Extra
+/*
+ * Divide two integers without using multiplication, division, and 
+ * mod operator.
+ */
+ int divide(int dividend, int divisor) {
+     
+        if(dividend==divisor) return 1;
+       
+        bool isPositive = (dividend<0 == divisor<0);
+        unsigned int a = abs(dividend);
+        unsigned int b = abs(divisor);
+        
+        unsigned int ans = 0;
+        
+        while(a>=b){
+            short q = 0 ;
+            while(a>(b<<(q+1))){
+                q++;
+            }
+            
+            a = a-(b<<q);
+            ans += (1<< q);
+        }
+        
+        if(ans==INT_MIN and isPositive) return INT_MAX;
+        
+        return isPositive? ans : -ans;
+	}
  
  
  
@@ -335,13 +429,13 @@ int main(){
 	
 	
 	//06
-	smallestOfTwo(-5, -7); //approach-01
+	//smallestOfTwo(-5, -7); //approach-01
 	//smallestofTwo2(2, 3); //approach-02
 	
 	
 	
 	//07
-	
+	countSetBits1(10);
 	
 	
 	//08
@@ -356,6 +450,11 @@ int main(){
 	
 	
 	//11
+	
+	
+	
+
+
 	
 	
 	return 0;
