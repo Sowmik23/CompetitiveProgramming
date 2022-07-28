@@ -11,6 +11,173 @@ using namespace std;
 ///please must read this link:
 /// https://www.geeksforgeeks.org/c-bitset-and-its-application/
 
+/*
+A bitset is an array of bool but each Boolean value is not stored separately instead bitset optimizes the space such that each bool takes 1 bit space only, so space taken by bitset bs is less than that of bool bs[N] and vector bs(N). However, a limitation of bitset is, N must be known at compile time, i.e., a constant (this limitation is not there with vector and dynamic array)
+
+As bitset stores the same information in compressed manner the operation on bitset are faster than that of array and vector. We can access each bit of bitset individually with help of array indexing operator [] that is bs[3] shows bit at index 3 of bitset bs just like a simple array. Remember bitset starts its indexing backward that is for 10110, 0 are at 0th and 3rd indices whereas 1 are at 1st 2nd and 4th indices.
+We can construct a bitset using integer number as well as binary string via constructors which is shown in below code. The size of bitset is fixed at compile time that is, it can’t be changed at runtime.
+The main function defined for bitset class are operator [], count, size, set, reset and many more they are explained in below code:
+*/
+
+// C++ program to demonstrate various functionality of bitset
+#include <bits/stdc++.h>
+using namespace std;
+
+#define M 32
+
+int main()
+{
+
+	//cast bitset array to int
+	bitset<32> mybit(133);
+	 int x = static_cast<int>(mybit.to_ulong()) ;
+	 
+	 //or 
+	 int mybit_int = (int)(mybit.to_ulong());
+
+
+
+	// default constructor initializes with all bits 0
+	bitset<M> bset1;
+
+	// bset2 is initialized with bits of 20
+	bitset<M> bset2(20);
+
+	// bset3 is initialized with bits of specified binary string
+	bitset<M> bset3(string("1100"));
+
+	// cout prints exact bits representation of bitset
+	cout << bset1 << endl; // 00000000000000000000000000000000
+	cout << bset2 << endl; // 00000000000000000000000000010100
+	cout << bset3 << endl; // 00000000000000000000000000001100
+	cout << endl;
+
+	// declaring set8 with capacity of 8 bits
+
+	bitset<8> set8; // 00000000
+
+	// setting first bit (or 6th index)
+	set8[1] = 1; // 00000010
+	set8[4] = set8[1]; // 00010010
+	cout << set8 << endl;
+
+	// count function returns number of set bits in bitset
+	int numberof1 = set8.count();
+
+	// size function returns total number of bits in bitset
+	// so there difference will give us number of unset(0)
+	// bits in bitset
+	int numberof0 = set8.size() - numberof1;
+
+	cout << set8 << " has " << numberof1 << " ones and "
+		<< numberof0 << " zeros\n";
+
+	// test function return 1 if bit is set else returns 0
+	cout << "bool representation of " << set8 << " : ";
+	for (int i = 0; i < set8.size(); i++)
+		cout << set8.test(i) << " ";
+
+	cout << endl;
+
+	// any function returns true, if atleast 1 bit
+	// is set
+	if (!set8.any())
+		cout << "set8 has no bit set.\n";
+
+	if (!bset1.any())
+		cout << "bset1 has no bit set.\n";
+
+	// none function returns true, if none of the bit
+	// is set
+	if (!bset1.none())
+		cout << "bset1 has some bit set\n";
+
+	// bset.set() sets all bits
+	cout << set8.set() << endl;
+
+	// bset.set(pos, b) makes bset[pos] = b
+	cout << set8.set(4, 0) << endl;
+
+	// bset.set(pos) makes bset[pos] = 1 i.e. default
+	// is 1
+	cout << set8.set(4) << endl;
+
+	// reset function makes all bits 0
+	cout << set8.reset(2) << endl;
+	cout << set8.reset() << endl;
+
+	// flip function flips all bits i.e. 1 <-> 0
+	// and 0 <-> 1
+	cout << set8.flip(2) << endl;
+	cout << set8.flip() << endl;
+
+	// Converting decimal number to binary by using bitset
+	int num = 100;
+	cout << "\nDecimal number: " << num
+		<< " Binary equivalent: " << bitset<8>(num);
+
+	return 0;
+}
+
+
+/*
+For bitset set, reset and flip function are defined. Set function sets (1) all bits of bitset if no argument is provided otherwise it sets the bit whose position is given as argument. In same way reset and flip also work if they are called with no argument they perform their operation on whole bitset and if some position is provided as argument then they perform operation at that position only.
+For bitset all bitwise operator are overloaded that is they can be applied to bitset directly without any casting or conversion, main overloaded operator are &, |, ==, != and shifting operator <> which makes operation on bitset easy.
+Use of above operator is shown in below code.
+*/
+// C++ program to show applicable operator on bitset.
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	bitset<4> bset1(9); // bset1 contains 1001
+	bitset<4> bset2(3); // bset2 contains 0011
+
+	// comparison operator
+	cout << (bset1 == bset2) << endl; // false 0
+	cout << (bset1 != bset2) << endl; // true 1
+
+	// bitwise operation and assignment
+	cout << (bset1 ^= bset2) << endl; // 1010
+	cout << (bset1 &= bset2) << endl; // 0010
+	cout << (bset1 |= bset2) << endl; // 0011
+
+	// left and right shifting
+	cout << (bset1 <<= 2) << endl; // 1100
+	cout << (bset1 >>= 1) << endl; // 0110
+
+	// not operator
+	cout << (~bset2) << endl; // 1100
+
+	// bitwise operator
+	cout << (bset1 & bset2) << endl; // 0010
+	cout << (bset1 | bset2) << endl; // 0111
+	cout << (bset1 ^ bset2) << endl; // 0101
+}
+
+
+//Todo: Dynamic Bitset: 
+// B1 is initialized with size 0
+    // with all bits 0
+    boost::dynamic_bitset<> B1;
+ 
+    // B2 is initialized with size
+    // bit_size with all bits 0
+    boost::dynamic_bitset<> B2(bit_size);
+ 
+    // B3 is initialized with size
+    // bit_size and value 14
+    boost::dynamic_bitset<> B3(bit_size, 14);
+ 
+    // B4 is initialized with size
+    // bit_size, value 14 and
+    // block_size of 8 bits
+    boost::dynamic_bitset<uint8_t> B4(16, 84);
+ 
+
+
+
 ///Example
 /*
 	string s1,s2;
@@ -335,7 +502,7 @@ void countSetBits1(int n){
 	
 	
 	////approach-03:
-	cnt = 0;
+	cnt = e;
 	for(int i=1;i<=32;i++){
 		if((1<<31) & (n>>i)) cnt++;
 	}
@@ -347,18 +514,192 @@ void countSetBits1(int n){
 
 
 ///TODO: 08
-
+//finding next higher and lower number with same number of set bits
 
 
 ///TODO: 09
-
+//optimizing modulus(%) operation: n&(x-1) where n%x;
 
 
 ///TODO: 10
-
+//add 1 to a number without +, | : just determine 2's complement: ~x (~ is bitwise complement). So, -(~x) is the ans
 
 ///TODO: 11
+Multiply a given Integer with 3.5:
+
+//Time: Space: O(1)
+//(x<<3 - x)>>1
+//or (x<<1)+x+(x>>1);
+
+	int x = 3;
 	
+	cout<<(x<<1)<<endl;
+	cout<<(x>>1)<<endl;
+	cout<<(x<<1)+x+(x>>1)<<endl;
+	
+	//another way:
+	cout<<"Another way"<<endl;
+	cout<<(x<<3)<<endl;
+	int y = (x<<3);
+	cout<<y<<endl;
+	y-=x;
+	cout<<y<<endl;
+	cout<<(y>>1)<<endl;
+
+///TODO: 12
+//Turn off the rightmost set bit
+//Just do n&(n-1)
+//Time: Space: O(1)
+
+
+///TODO: 13
+//Find whether a given number is a power of 4 or not
+//if it is power of 2: n&(n-1)==1 and find the set bit's position/length. if position/length is odd then true.
+
+
+///TODO: 14
+//Compute the integer absolute value (abs) without branching
+//for positive number do nothing but for negative number toggle the bit's then add 1 with it. 
+
+//	mask = n>>31 //the leftmost bit/sign bit(it will be 0 for positive and 1 for negative number)
+	
+	//now add n with mask: mask + n : So, if the number is negative 1 will be added with the number else 0 will be added
+	
+	//then xor n with mask: 
+	//so if the number is negative then : mask = 1 and n = n+1 , new n = (n+1)^mask 
+	//else for positive number mask = 0 and n = n new n = n^0 = n
+	
+	int const mask = n >> (sizeof(int) * CHARBIT - 1);
+    	return ((n + mask) ^ mask);
+
+
+///TODO: 15
+//Compute modulus division by a power-of-2-number
+//n%d where d is power of 2
+
+//my initial thought after drawing in paper:  return size of n bit after n xor d
+
+//another solution is : n&(d-1) 
+
+
+///TODO: 16
+//Minimum or Maximum of two integers:
+//just use bitset array: and iterate from left to right and see if both are negative or both are positive and check bit 
+//whose bit is 1 and others is 0 is greater and opposite is true of if both numbers are negative
+
+
+///TODO: 17
+//Rotate bits of a number: Think yourself
+
+	cout<<"Rotate bits"<<endl;
+	int n = 16;
+	int d = 2;
+	
+	cout<<((n<<d)|(n>>(8-d)))<<endl;
+	cout<<((n>>d)|(n<<(8-d)))<<endl;
+	
+//what should you do if you want to rotate the number only, means without 4/8/16/32 bit.
+//Easily, You need to rotate the bit's without leading zero	
+
+
+
+///TODO: 18
+//Find the two non-repeating elements in an array of repeating elements/ Unique Numbers 2
+
+//2's complement of x is : -x or ~(x-1) or ~x+1
+
+
+
+///TODO: 19
+//Find the Number Occurring Odd Number of Times
+Given an array of positive integers. All numbers occur an even number of times except one number which occurs an odd number of times. Find the number in O(n) time & constant space.
+
+
+Do: brute force, hashing, then xor
+
+
+
+///TODO: 20
+//Check for Integer Overflow
+//Write a “C” function, int addOvf(int* result, int a, int b) If there is no overflow, the function places the resultant = sum a+b in “result” and returns 0. Otherwise it returns -1. The solution of casting to long and adding to find detecting the overflow is not allowed.
+
+
+//Time: O(1), Space: O(1)
+=>Sol: There can be overflow only if signs of two numbers are same, and sign of sum is opposite to the signs of numbers. 
+
+int sum = a+b;
+if(a>0 and b>0 and sum<0) return overflow happened;
+if(a<0 and b<0 and sum>0) return overflow happened;
+return no overflow happened;
+
+
+
+
+
+///TODO: 21
+//Reverse Bits of a Number
+
+//7 -->  0111
+if 32 bit integer then:
+	bitset<32> bit(x);
+	for(int i=0;i<16;i++){
+		swap(bit[i], bit[32-i-1]);
+	}
+	return static_cast<int> (bit.to_ulong());
+
+
+
+///TODO: 22
+
+
+
+///TODO: 23
+
+
+
+///TODO: 24
+
+
+
+///TODO: 25
+
+
+
+///TODO: 26
+
+
+
+///TODO: 27
+
+
+
+
+///TODO: 28
+
+
+
+///TODO: 29
+
+
+
+///TODO: 30
+
+
+
+
+///TODO: 31
+
+
+
+///TODO: 32
+
+
+
+///TODO: 33
+
+
+
+///TODO: 34
  
 /// TODO: Extra
 /*

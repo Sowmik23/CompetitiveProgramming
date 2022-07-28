@@ -1,3 +1,4 @@
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -45,8 +46,6 @@ private:
         return root;
     }
 };
-
-
 
 /**
  * Definition for a binary tree node.
