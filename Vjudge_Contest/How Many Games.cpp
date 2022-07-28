@@ -13,26 +13,36 @@ int main()
 	cin>>t;
 	while(t--)
 	{
-		double x;
-		cin>>x;
-		double y=x;
-		
-		long long int d=1,cnt=0;
-		while(y!=((long long int)y))
+		string str;
+		cin>>str;
+		int len=str.length();
+		int cnt=0,flag=0;
+		for(int i=len-1;i>=0;i--)
 		{
+			if(str[i]=='.' ) 
+			{
+				flag=1;
+				break;
+			}
 			cnt++;
-			d*=10;
-			y=y*10;
 		}
-		//cout<<d<<" "<<cnt<<endl;
-		long long int p=d*x;
+		if(flag==0) cnt=0;
+		//cout<<cnt<<endl;
+		int num=0;
+		for(int i=0;i<len;i++)
+		{
+			if(str[i]!='.') 
+			{
+				num=num*10 + (str[i]-'0');
+			}
+		}
+		//cout<<num<<endl;
+		int l=pow(10,cnt);
+		int k=gcd(num,l);
+		cout<<l/k<<endl;
 		
-		long long int k = gcd(p,d);
-		
-		//cout<<k<<endl;
-		cout<<d/k<<endl;
-	
 	}	
 	
 	return 0;
 }
+
