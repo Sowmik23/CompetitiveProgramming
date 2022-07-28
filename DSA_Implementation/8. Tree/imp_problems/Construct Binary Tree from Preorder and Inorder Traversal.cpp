@@ -13,6 +13,54 @@ class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         
+        unordered_map<int, int> mp;
+        for(int i=0;i<inorder.size();i++){
+            mp[inorder[i]] = i;
+        }
+        
+        int preorderIndex = 0;
+        int left = 0;
+        int right = preorder.size()-1;
+        
+        return splitTree(preorder, inorder, mp, preorderIndex, left, right);
+    }
+private:
+	//***Note*** that rootIdx is passed as reference 
+    TreeNode* splitTree(vector<int> &preorder, vector<int> &inorder, unordered_map<int, int> &mp, int &preorderIndex, int left, int right){
+        if(left>right) return NULL;
+        
+        int root_val = preorder[preorderIndex];
+        int root_index = mp[root_val];
+        TreeNode* root = new TreeNode(root_val);
+        preorderIndex++;
+        
+      
+        root->left = splitTree(preorder, inorder, mp, preorderIndex, left, root_index-1);
+        
+        root->right = splitTree(preorder, inorder, mp, preorderIndex, root_index+1, right);
+        
+        return root;
+    }
+};
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        
         
         //Approach-01: using map + recursion: Time: O(n), Space: O(n)
         /*
