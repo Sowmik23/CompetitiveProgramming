@@ -3,7 +3,7 @@
 vector.push_back(value);  //insert last
 vector.insert(vector.begin(), value) //insert first
 int x = vector.back() //last value in vector
-vector.pop_back() //pop last value from vector	
+vector.pop_back() //pop last value from vector
 
 
 1. vectorname.erase(position)
@@ -22,7 +22,7 @@ vector.pop_back() //pop last value from vector
 	std::vector<double> output(input.size());
 	std::copy(input.begin(), input.end(), output.begin());
 
-#another way: 
+#another way:
 	Here, set<int> st;
 	return vector<int> (st.begin(), st.end());
 
@@ -30,12 +30,12 @@ vector.pop_back() //pop last value from vector
 
 #find element from vector:
 	it = find(v.begin(), v.end(), stones[i]);
-	if(it!=v.end()) cnt++;	
+	if(it!=v.end()) cnt++;
 
 
 
 #copy a set into a vector:
-	set<int> st;	
+	set<int> st;
 	vector<int> res(st.size());
         copy(st.begin(), st.end(), res.begin());
 
@@ -43,19 +43,19 @@ vector.pop_back() //pop last value from vector
 
  // rotating this 2d vector in 90 degree clockwise
         vector<vector<char>> res;
-        
-        
+
+
         for(int i=0;i<column;i++){
-            
+
             vector<char> tmp;
             for(int j=row-1;j>=0;j--){
                 tmp.push_back(box[j][i]);
-            }       
+            }
             res.push_back(tmp);
         }
-        
-        
-        
+
+
+
 
 
 **************list*****************
@@ -73,7 +73,7 @@ vector.pop_back() //pop last value from vector
             st.insert(nums[i]);
         }
         int mx = INT_MIN, sndmx = INT_MIN, trdmx = INT_MIN;
-        
+
         //for(auto i: st) cout<<i<<" ";
         //cout<<*st.rbegin()<<endl;
         if(st.size()<3) return *st.rbegin();  //return last element of the set;
@@ -81,7 +81,7 @@ vector.pop_back() //pop last value from vector
             mx = *st.rbegin();
             set<int>::reverse_iterator it;
             int flag1=0, flag2=0;
-            
+
             for(it=st.rbegin(); it!=st.rend();it++){
                 if(*it<mx and flag1==0){
                     sndmx = *it;
@@ -121,7 +121,7 @@ if(umap.count(1))
     }
     else
     {
-        cout<<"Element Not Found"<<endl;    
+        cout<<"Element Not Found"<<endl;
     }
 
 
@@ -156,12 +156,12 @@ vector<int> v1;
 Converting vector into a heap
 using make_heap()
     	make_heap(v1.begin(), v1.end());
-    
+
  // Displaying the maximum element of heap
     // using front()
-    v1.front() 
+    v1.front()
 
-push_heap(): 
+push_heap():
 v1.push_back(50);
 // using push_heap() to reorder elements
     push_heap(v1.begin(), v1.end());
@@ -170,7 +170,7 @@ pop_heap()
 // using pop_heap() to delete maximum element
     pop_heap(v1.begin(), v1.end());
     v1.pop_back();
-    
+
 sort_heap() : after sorting it will no longer a heap
 // sorting heap using sort_heap()
     sort_heap(v1.begin(), v1.end());
@@ -183,10 +183,10 @@ is_heap()
     cout << "The container is not heap";
 
 is_heap_until()
-// using is_heap_until() to check position 
+// using is_heap_until() to check position
     // till which container is heap
     auto it = is_heap_until(v1.begin(), v1.end());
-    
+
     // Displaying heap range elements
     cout << "The heap elements in container are : ";
     for (it1=v1.begin(); it1!=it; it1++)
@@ -196,33 +196,33 @@ is_heap_until()
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
-        
+
         make_heap(stones.begin(), stones.end());
-        
+
         int x, y;
-        
+
         while(stones.size()>1) {
             y = stones.front();
             pop_heap(stones.begin(), stones.end());
             stones.pop_back();
-            
+
             x = stones.front();
-            
+
             pop_heap(stones.begin(), stones.end());
             stones.pop_back();
-            
+
             stones.push_back(y-x);
             push_heap(stones.begin(), stones.end());
-            
-           
+
+
         }
-        
+
         int res = stones.front();
         pop_heap(stones.begin(), stones.end());
         stones.pop_back();
 
-        
-        
+
+
         return res;
     }
 };
@@ -238,8 +238,8 @@ public:
 
 
 #substring matching : string s, string t
-	if(s==t.substr(0, s.size()) return true;   //that means s is a substring of t;  
-	substr(initial index, last index) 
+	if(s==t.substr(0, s.size()) return true;   //that means s is a substring of t;
+	substr(initial index, last index)
 
 
 
@@ -247,7 +247,7 @@ public:
 
 #uppercase to lowercase and lowercase to uppercase convert: using STL
 	transform(su.begin(), su.end(), su.begin(), ::toupper);
-   
+
     // using transform() function and ::tolower in STL
     transform(sl.begin(), sl.end(), sl.begin(), ::tolower);
 
@@ -271,31 +271,24 @@ sort(nums.begin(), nums.end(), [](int a, int b){return mp2[a]<mp2[b]});
 
 
 
+# use custom comparator in a priority queue
+auto comparator = [](auto& a, auto& b){
+    if(a.first==b.first) return a.second<b.second;
+    return a.first>b.first;
+};
+
+priority_queue<pair<int, string>, vector<pair<int, string>>, decltype(comparator)> pq(comparator);
+
+#Initialize hash map with some key value
+unordered_map<int, int> mp{{0, 0}}; //// initialize the hash map with index 0 for sum 0
 
 
 
+#3D vector initialization
+vector<vector<int>> visited(m, vector<int> (n, 0));
+vector<vector<vector<int>>> memo(m, vector<vector<int>> (n,  vector<int> (k+1, -1)));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Finding minimum from multiple variable at once:
+int res = min({right, left, up, down});

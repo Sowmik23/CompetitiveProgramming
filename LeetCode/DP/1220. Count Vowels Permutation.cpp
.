@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int countVowelPermutation(int n) {
+
+        //Time: O(n)
+        //Space: O(n), space can be optimized by pre-computing values in an array
+
+        // eaueieiouou
+        const long mod = 1e9+7;
+        long a = 1, e = 1, i = 1, o = 1, u = 1;
+        long aa, ee, ii, oo, uu;
+
+        //mapping:
+        // a -> e
+        // e -> a, i
+        // i -> a, e, o, u
+        // o -> i, u
+        // u -> a
+
+        for(int idx=2;idx<=n;idx++){
+            aa = e%mod;
+            ee = (a+i)%mod;
+            ii = (a + e + o + u)%mod;
+            oo = (i + u)%mod;
+            uu = a%mod;
+
+            a = aa;
+            e = ee;
+            i = ii;
+            o = oo;
+            u = uu;
+        }
+
+        return (a + e + i + o + u)%mod;
+    }
+};

@@ -21,7 +21,7 @@ const int MAXN = 100009;
 int n, arr[MAXN];
 
 
-int getSum(int BITree[], int idx){
+int getSum(int BITree[], int idx){			
 	int sum = 0;
 	
 	///idx in BITree[] is 1 more than idx in arr[]
