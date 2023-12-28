@@ -341,7 +341,43 @@ int count = __builtin_popcount(4);
 
 
 
+// 338. Counting Bits
+ 
+        vector<int> res(n+1, 0);
+        for(int i=0;i<=n;i++){
+            int cnt = 0;
+            int x = i;
+            for(int j=0;j<32;j++){
+                int bit = 1&(x>>j);
+                if(bit==1) cnt++;
+            }
+            res[i] = cnt;
+        }
+        return res;
+        
 
+        //using memoization
+
+        //firt of all see the example :: how it works using memoization method
+        // 0 -> 0
+        // 1 -> 1
+        // 2 -> 1
+        // 3 -> 2
+        // 4 -> 1
+        // 5 -> 2
+        // 6 -> 2
+        // 7 -> 3
+        // 8 -> 1
+        // 9 -> 2
+        // 10 -> 2
+        
+        vector<int> memo(n+1, 0);
+        for(int i=0;i<=n;i++){
+            if(i==0 or i==1) memo[i] = i;
+            else if(i%2==0) memo[i] = memo[i/2];
+            else memo[i] = memo[i/2]+1;
+        }
+        return memo;
 
 
 
@@ -555,6 +591,57 @@ Multiply a given Integer with 3.5:
 ///TODO: 13
 //Find whether a given number is a power of 4 or not
 //if it is power of 2: n&(n-1)==1 and find the set bit's position/length. if position/length is odd then true.
+	class Solution {
+public:
+    bool isPowerOfFour(int n) {
+        
+        //approach: recursive version
+        //Time Complexity: O(log4(n))
+        //Space Complexity: O(log4(n)) : for recursion stack
+        
+        //return ifTrue(n, 1);
+        
+        
+        //approach: bit manipulation
+       /*
+        int andRes;
+        int lenOfN;
+        
+        if(n==0) return false;
+        
+        if(n==INT_MIN) {
+            andRes = n&(n+1); 
+            lenOfN = floor(log2(abs(n+1)))+1;
+        }
+        else {
+            andRes = n&(n-1);
+            lenOfN = floor(log2(abs(n)))+1;
+        }
+        
+        if(andRes==0 and lenOfN%2==1) return true;
+        return false;
+        */
+        
+        //Bit Manipulation: Optimization
+        //all negative numbers is not power of 4
+        //so actually we just need to check 1 to n
+        
+        if(n<1) return false;
+        int andRes = n&(n-1); //here (n&n-1)==0 means it is power of two
+        int lenOfN = floor(log2(n))+1; //1 2 4 8 16 32 64 128 .....-> 2 4 2 4 2 4
+        
+        if(andRes==0 and lenOfN%2==1) return true;
+        return false;
+    }
+private:
+    bool ifTrue(int n, long x){
+        if(x==n) return true;
+        if(x>n) return false;
+        
+        return ifTrue(n, x*4);
+    }
+};
+
 
 
 ///TODO: 14
@@ -754,7 +841,7 @@ log2(n & -n) + 1;
 
     return (even_bits | odd_bits); // Combine even and odd bits
 
-		
+
 
 ///TODO: 29
 
@@ -810,6 +897,38 @@ log2(n & -n) + 1;
 	}
 
 
+//////xorBeauty
+	class Solution {
+	public:
+	    int xorBeauty(vector<int>& nums) {
+
+
+	        unordered_map<int, int> mp0;
+	        unordered_map<int, int> mp1;
+
+	        for(int i=0;i<nums.size();i++){
+
+	            int x = nums[i];
+	            for(int j=0;j<32;j++){
+	                int b = (1 & (x >> j));
+	                if(b==0) mp0[j]++;
+	                else mp1[j]++;
+	            }
+	        }
+
+	        string str = "";
+	        for(int i=0;i<32;i++){
+	            if(mp1[i]%2==1) str="1"+str;
+	            else str="0"+str;
+	        }
+	        //cout<<str<<endl;
+
+	        int res = stoi(str, nullptr, 2);;
+
+
+	        return res;
+	    }
+	};
 
 
 

@@ -277,7 +277,16 @@ auto comparator = [](auto& a, auto& b){
     return a.first>b.first;
 };
 
+
+
+
+
 priority_queue<pair<int, string>, vector<pair<int, string>>, decltype(comparator)> pq(comparator);
+
+
+
+
+
 
 #Initialize hash map with some key value
 unordered_map<int, int> mp{{0, 0}}; //// initialize the hash map with index 0 for sum 0

@@ -1,37 +1,55 @@
-class Solution {
+
+
+//8888888*************************************
+
+class Trie {
+    unordered_map<char, Trie*> mp;
+    bool isWord = false;
+
 public:
-    vector<string> topKFrequent(vector<string>& words, int k) {
+    Trie() {
 
-        unordered_map<string, int> mp;
-        for(auto& w: words){
-            mp[w]++;
+    }
+
+    void insert(string word) {
+        Trie* trieNode = this;
+        for(auto& ch: word){
+            if(!trieNode->mp.count(ch)){
+                trieNode->mp[ch] = new Trie();
+            }
+            trieNode = trieNode->mp[ch];
         }
+        trieNode->isWord = true;
+    }
 
-        auto comparator = [](auto& a, auto& b){
-            if(a.first==b.first) return a.second<b.second;
-            return a.first>b.first;
-        };
-
-        priority_queue<pair<int, string>, vector<pair<int, string>>, decltype(comparator)> pq(comparator);
-
-        for(auto& m: mp){
-            pq.push({m.second, m.first});
-            if(pq.size()>k) pq.pop();
+    bool search(string word) {
+        Trie* trieNode = this;
+        for(auto& ch: word){
+            if(!trieNode->mp.count(ch))return false;
+            trieNode = trieNode->mp[ch];
         }
+        return trieNode->isWord;
+    }
 
-        vector<string> res;
-        while(!pq.empty()){
-            //cout<<pq.top().second<<" "<<pq.top().first<<endl;
-            res.push_back(pq.top().second);
-            pq.pop();
+    bool startsWith(string prefix) {
+        Trie* trieNode = this;
+        for(auto& ch: prefix){
+            if(!trieNode->mp.count(ch))return false;
+            trieNode = trieNode->mp[ch];
         }
-
-        reverse(res.begin(), res.end());
-        return res;
+        return true;
     }
 };
 
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
 
+//8888888*************************************
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {

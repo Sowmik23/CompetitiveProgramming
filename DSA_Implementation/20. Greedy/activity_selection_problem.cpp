@@ -1,3 +1,9 @@
+
+// You are given n activities with their start and finish times. 
+// Select the maximum number of activities that can be performed by a single person,
+// assuming that a person can only work on a single activity at a time.
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,11 +17,11 @@ bool comp(Activity a1, Activity a2){
 
 void printMaxActivities(Activity arr[], int n){
 	sort(arr, arr+n, comp);
-	
+
 	int i = 0;
 	cout<<"These activities are selected: "<<endl;
 	cout<<arr[i].start<<" "<<arr[i].finish<<endl;
-	
+
 	for(int j=1;j<n;j++){
 		if(arr[j].start>=arr[i].finish){
 			cout<<arr[j].start<<" "<<arr[j].finish<<endl;
@@ -23,23 +29,23 @@ void printMaxActivities(Activity arr[], int n){
 		}
 	}
 };
-	
-	
+
+
 
 int main(){
-	
+
 	Activity arr[] = {{5, 9}, {1, 2}, {3, 4}, {0, 6}, {5, 7}, {8, 9}};
-    
+
     int n = sizeof(arr)/sizeof(arr[0]);
     printMaxActivities(arr, n);
-	
-	
+
+
 	/*///Approach: 01 (maybe better approach)
 	vector<pair<int, int>> tasks;
 	pair<int, int> pa;
 	int n , start, end;
 	cin>>n;
-	
+
 	for(int i=0;i<n;i++){
 		scanf("%d%d", &start, &end);
 		pa = make_pair(start, -1);
@@ -47,18 +53,18 @@ int main(){
 		pa = make_pair(end, 1);
 		tasks.push_back(pa);
 	}
-	
+
 	sort(tasks.begin(), tasks.end());
 	int mx = 0, cnt=0;
 	for(auto i: tasks){
 		//cout<<i.first<<" "<<i.second<<endl;
 		mx = max(mx, cnt-=i.second);
 	}
-	
+
 	cout<<mx<<endl;
 	*/
-	
-	
+
+
 	return 0;
 }
 /*
