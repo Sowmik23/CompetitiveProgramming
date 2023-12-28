@@ -1,0 +1,48 @@
+/*=> From udemy course Abdul Bari...
+
+#Difference between auto and auto&
+Yes, it is correct to use auto and auto& for local variables. When getting the return type of a function,
+it is also correct to use auto&. This applies for range based for loops as well.
+
+General rules for using auto are:
+
+Choose auto x when you want to work with copies.
+Choose auto &x when you want to work with original items and may modify them.
+Choose auto const &x when you want to work with original items and will not modify them.
+
+
+
+arrays
+
+structure
+
+pointers
+
+reference
+
+parameter passsing
+
+classes
+
+constructors
+
+templates
+
+
+//Follow this link: https://sites.google.com/site/simplestjava/c-glossary  (c++ glossary)
+
+https://gcallah.github.io/OOP2/glossary.html
+
+https://www.stroustrup.com/glossary.html#GC++
+
+https://github.com/mapbox/cpp/blob/master/glossary.md
+
+
+
+
+
+
+
+
+
+*/

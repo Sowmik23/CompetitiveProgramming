@@ -51,4 +51,29 @@ public:
         }
         return r;
     }
+
+
+
+//Explanation:
+/*
+1. ones ^= (number & ^twos): This line updates the ones variable by XORing it with the bitwise AND of the current number (number)
+ and the complement of twos (^twos). The complement of twos ensures that if a bit has already appeared twice, it is excluded from ones. 
+ This operation effectively keeps track of the bits that have appeared once but not twice.
+
+2. twos ^= (number & ^ones): This line updates the twos variable by XORing it with the bitwise AND of the current number (number) 
+and the complement of ones (^ones). The complement of ones ensures that if a bit has already appeared once, it is excluded from twos. 
+This operation effectively keeps track of the bits that have appeared twice but not three times.
+
+*/
+        int ones = 0;
+        int twos = 0;
+
+        for (const int num : nums) {
+            ones ^= (num & ~twos);
+            twos ^= (num & ~ones);
+        }
+
+        return ones;
+        
+    }
 };

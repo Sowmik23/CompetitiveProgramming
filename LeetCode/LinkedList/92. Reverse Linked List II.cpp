@@ -1,3 +1,31 @@
+{
+    ListNode *st = new ListNode(0);
+        st->next = head;
+
+        ListNode* prev = st;
+        for(int i=1;i<left;i++){
+            prev = prev->next;
+        }
+
+        ListNode* curr = prev->next;
+        //reversing
+        // [1,2,3,4,5] 2->4
+        // 2 3 4
+        // curr = 2, forw = curr next 3
+        // curr next 2 next = forw next 4 next 5
+        // forw next 4 = prev next 2
+        // prev next 2 = forw 4
+        for(int i=0;i<right-left;i++){ //Deep Here :(
+            ListNode* forward = curr->next;
+            curr->next = forward->next;
+            forward->next = prev->next;
+            prev->next = forward;
+        }
+        return st->next;
+    }
+
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {

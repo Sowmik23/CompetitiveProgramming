@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CP-Algorithms/CP-Algorithms.iml" filepath="$PROJECT_DIR$/CP-Algorithms/CP-Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CompetitiveProgramming.iml" filepath="$PROJECT_DIR$/CompetitiveProgramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hackerrank/Hackerrank.iml" filepath="$PROJECT_DIR$/Hackerrank/Hackerrank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Uva/Uva.iml" filepath="$PROJECT_DIR$/Uva/Uva.iml" />
+    </modules>
+  </component>
+</project>

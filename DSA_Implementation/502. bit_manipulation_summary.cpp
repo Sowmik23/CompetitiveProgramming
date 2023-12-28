@@ -31,8 +31,8 @@ int main()
 	//cast bitset array to int
 	bitset<32> mybit(133);
 	 int x = static_cast<int>(mybit.to_ulong()) ;
-	 
-	 //or 
+
+	 //or
 	 int mybit_int = (int)(mybit.to_ulong());
 
 
@@ -157,24 +157,24 @@ int main()
 }
 
 
-//Todo: Dynamic Bitset: 
+//Todo: Dynamic Bitset:
 // B1 is initialized with size 0
     // with all bits 0
     boost::dynamic_bitset<> B1;
- 
+
     // B2 is initialized with size
     // bit_size with all bits 0
     boost::dynamic_bitset<> B2(bit_size);
- 
+
     // B3 is initialized with size
     // bit_size and value 14
     boost::dynamic_bitset<> B3(bit_size, 14);
- 
+
     // B4 is initialized with size
     // bit_size, value 14 and
     // block_size of 8 bits
     boost::dynamic_bitset<uint8_t> B4(16, 84);
- 
+
 
 
 
@@ -186,14 +186,14 @@ int main()
 	//Declaration for bitset type variables
 	bitset<26> b_s1,b_s2;
 
-	// setting the bits in b_s1 for the encountered characters of string s1 
+	// setting the bits in b_s1 for the encountered characters of string s1
 	for(auto& i : s1)
 	{
 	  if(!b_s1[i-'a'])
 		b_s1[i-'a'] = 1;
 	}
 
-	// setting the bits in b_s2 for the encountered characters of string s2 
+	// setting the bits in b_s2 for the encountered characters of string s2
 	for(auto& i : s2)
 	{
 	  if(!b_s2[i-'a'])
@@ -202,7 +202,7 @@ int main()
 
    // counting the number of set bits by the "Logical AND"  operation
    // between b_s1 and b_s2
-   cout<<(b_s1&b_s2).count(); 
+   cout<<(b_s1&b_s2).count();
 */
 
 
@@ -213,13 +213,13 @@ int main()
  */
 void swapTwoNumber(int a, int b){
 	cout<<"Before swap: "<<a<<" "<<b<<endl;
-	
+
 	if(a==b) return;
-	
+
 	a = a xor b;
 	b = a xor b;
 	a = a xor b;
-	
+
 	cout<<"After swap: "<<a<<" "<<b<<endl;
 }
 
@@ -231,16 +231,16 @@ void swapTwoNumber(int a, int b){
 
 ///TODO: 01
 /*
-Given an array where every element occurs three times, 
-* except one element which occurs only once. Find the element that 
-* occurs once. The expected time complexity is O(n) and O(1) 
+Given an array where every element occurs three times,
+* except one element which occurs only once. Find the element that
+* occurs once. The expected time complexity is O(n) and O(1)
 * extra space.
 */
 /// Size of integer is 32 bit.
 /// Time: O(C*n) // C is size of integer: 32 (constant), n= size of nums array
 /// Space: O(1)
 int findUniqueElement(vector<int> &nums){
-  
+
 	string res = "";
 	for(int i=31;i>=0;i--){
 		int cnt = 0;
@@ -254,8 +254,8 @@ int findUniqueElement(vector<int> &nums){
 	///cout<<res<<endl;
 	//convert res into decimal number
 	cout<<stoi(res, 0, 2)<<endl;
-	
-	
+
+
 	return stoi(res, 0, 2);
 }
 
@@ -269,10 +269,10 @@ int findUniqueElement(vector<int> &nums){
 ///TODO: 02
 /*
  Given two signed integers, write a function that returns true if the
- signs of given integers are different, otherwise false. For example, 
+ signs of given integers are different, otherwise false. For example,
  the function should return true -1 and +100, and should return false
  for -100 and -200. The function should not use any of the arithmetic
- operators.  
+ operators.
  */
  /// Size of integer is 32 bit.
  /// Time: O(1)
@@ -285,23 +285,23 @@ int findUniqueElement(vector<int> &nums){
 	 ///-5 = 1|101
 	 ///cout<<(x^y)<<endl;
 	// return (x^y)<0;
-	 
+
 	 ///as comparison takes more time so another way is directly
 	 ///check the Msb. right shift 31 bit and check last bit(32th) only.
 	 ///if the msb is 1 then opposite sign else same sign.
 	 return ((x^y)>>31); //faster than previous
  }
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
 /// TODO: 03
  /*
-  Given a positive integer n, count the total number of set bits in 
+  Given a positive integer n, count the total number of set bits in
   * binary representation of all numbers from 1 to n.
   */
 /// Size of integer is 32 bit.
@@ -323,33 +323,69 @@ int cntTotalSetBitRecursive(int x){
 //approch: dp: count the set bits from 1 to n
 int countSetBitsDP(int n){
 	vector<int> setBits(n+1);
-	
+
 	//there is not setBit in 0
 	setBits[0] = 0;
 	int cnt = 0;
-	
+
 	for(int i=1;i<=n;i++){
 		//cout<<i<<" "<<(i>>1)<<endl;
 		setBits[i] = setBits[i>>1] + (1&i); //i>>1 means i is divided by 2
 		cnt+=setBits[i];
 	}
-	
+
 	return cnt;
 }
 //stl
 int count = __builtin_popcount(4);
+
+
+
+// 338. Counting Bits
  
- 
- 
- 
- 
- 
- 
- 
+        vector<int> res(n+1, 0);
+        for(int i=0;i<=n;i++){
+            int cnt = 0;
+            int x = i;
+            for(int j=0;j<32;j++){
+                int bit = 1&(x>>j);
+                if(bit==1) cnt++;
+            }
+            res[i] = cnt;
+        }
+        return res;
+        
+
+        //using memoization
+
+        //firt of all see the example :: how it works using memoization method
+        // 0 -> 0
+        // 1 -> 1
+        // 2 -> 1
+        // 3 -> 2
+        // 4 -> 1
+        // 5 -> 2
+        // 6 -> 2
+        // 7 -> 3
+        // 8 -> 1
+        // 9 -> 2
+        // 10 -> 2
+        
+        vector<int> memo(n+1, 0);
+        for(int i=0;i<=n;i++){
+            if(i==0 or i==1) memo[i] = i;
+            else if(i%2==0) memo[i] = memo[i/2];
+            else memo[i] = memo[i/2]+1;
+        }
+        return memo;
+
+
+
+
 
  /// TODO: 04 =>Hard
  /*
-  Given a number x and two positions (from the right side) in 
+  Given a number x and two positions (from the right side) in
   * the binary representation of x, write a function that swaps
   * n bits at given two positions and returns the result.
   * It is also given that the two sets of bits do not overlap.
@@ -358,13 +394,13 @@ int count = __builtin_popcount(4);
 /// Time: O(1)
 /// Space: O(1)
 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
 /// TODO: 05
 /*
  * Add two numbers without using arithmetic operators
@@ -375,25 +411,25 @@ int count = __builtin_popcount(4);
 	 ///need to use 3 logical operators only(xor, and and left shift)
 	 cout<<"Sum of "<<a<<" and "<<b<<" is: ";
 	 int carry = (a & b); //use unsigned carry
-	 
+
 	 while(b){
 		 a = a ^ b;
-		 
+
 		 b = (carry<<1);
-		 
+
 		 carry = (a & b);
 	 }
 	 cout<<a<<endl;
  }
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
 /// TODO: 06
  /*
   Smallest of three integers without comparison operators
@@ -404,16 +440,16 @@ int count = __builtin_popcount(4);
 //approach-01: Repeated substraction/Math
 //approach-02: Bit approach:
 
-///first find smallest of two number without use ">" and "<" 
+///first find smallest of two number without use ">" and "<"
 void smallestOfTwo(int a, int b){
-	
-	int smallest; 
+
+	int smallest;
 	int x = a;
 	int y = b;
 	for(int i=31;i>=0;i--){
 		int sa = 1&(a>>i);
 		int sb = 1&(b>>i);
-		
+
 		if(i==31){
 			cout<<"Sign bit: "<<sa<<" "<<sb<<endl;
 			if(sa==1 and sb==0){
@@ -426,7 +462,7 @@ void smallestOfTwo(int a, int b){
 			}
 		}
 		cout<<"Other bits: "<<sa<<" "<<sb<<endl;
-		
+
 		if(sa==sb) continue;
 		if(sa==1 and sb==0){
 			smallest = y;
@@ -437,45 +473,45 @@ void smallestOfTwo(int a, int b){
 			break;
 		}
 	}
- 
+
 	cout<<"Smallest is: "<<smallest<<endl;
 }
 
-///This method shifts the subtraction of x and y by 31 (if size of integer 
-///is 32). If (x-y) is smaller than 0, then (x -y)>>31 will be 1. 
-///If (x-y) is greater than or equal to 0, then (x -y)>>31 will be 0. 
-///So if x >= y, we get minimum as y + (x-y)&0 which is y. 
+///This method shifts the subtraction of x and y by 31 (if size of integer
+///is 32). If (x-y) is smaller than 0, then (x -y)>>31 will be 1.
+///If (x-y) is greater than or equal to 0, then (x -y)>>31 will be 0.
+///So if x >= y, we get minimum as y + (x-y)&0 which is y.
 ///If x < y, we get minimum as y + (x-y)&1 which is x.
-///Similarly, to find the maximum use 
-///x - ((x - y) & ((x - y) >> (sizeof(int) * CHAR_BIT - 1))) 
+///Similarly, to find the maximum use
+///x - ((x - y) & ((x - y) >> (sizeof(int) * CHAR_BIT - 1)))
 void smallestofTwo2(int a, int b){
-	
+
 	int smallest = b + ((a - b)&((a - b)>>31));
 
-	cout<<"Smallest between "<<a<<" and "<<b<<" is: "<<smallest<<endl; 
- 
+	cout<<"Smallest between "<<a<<" and "<<b<<" is: "<<smallest<<endl;
+
 	int greatest = a - ((a - b) & ((a - b)>>31));
-	cout<<"Greatest between "<<a<<" and "<<b<<" is: "<<greatest<<endl; 
+	cout<<"Greatest between "<<a<<" and "<<b<<" is: "<<greatest<<endl;
 
 	//same as
 	int smlest = b^((a^b) & -(a < b));
 	cout<<smlest<<endl;
 	int grtest = a^((a^b) & -(a<b));
-	cout<<grtest<<endl; 
-	
-	///It works because if x < y, then -(x < y) will be -1 which is 
-	///all ones(11111….), so r = y ^ ((x ^ y) & (111111…)) 
-	///= y ^ x ^ y = x. 
+	cout<<grtest<<endl;
 
-    ///And if x>y, then-(x<y) will be -(0) i.e -(zero) which is zero, 
+	///It works because if x < y, then -(x < y) will be -1 which is
+	///all ones(11111….), so r = y ^ ((x ^ y) & (111111…))
+	///= y ^ x ^ y = x.
+
+    ///And if x>y, then-(x<y) will be -(0) i.e -(zero) which is zero,
     ///so r = y^((x^y) & 0) = y^0 = y.
  }
- 
- 
- 
- 
- 
-	
+
+
+
+
+
+
 ///TODO: 07
 /*
  * Count set bits in an integer
@@ -486,10 +522,10 @@ void countSetBits1(int n){
 		if(1&(n>>i)) cnt++;
 	}
 	cout<<"Total set bits: "<<cnt<<endl;
-	
+
 	cout<<n<<endl;
-	
-	
+
+
 	////approach-02;
 	cnt = 0;
 	int mask = 1;
@@ -499,8 +535,8 @@ void countSetBits1(int n){
 	}
 	cout<<"Total set bits: "<<cnt<<endl;
 	cout<<n<<endl;
-	
-	
+
+
 	////approach-03:
 	cnt = e;
 	for(int i=1;i<=32;i++){
@@ -532,11 +568,11 @@ Multiply a given Integer with 3.5:
 //or (x<<1)+x+(x>>1);
 
 	int x = 3;
-	
+
 	cout<<(x<<1)<<endl;
 	cout<<(x>>1)<<endl;
 	cout<<(x<<1)+x+(x>>1)<<endl;
-	
+
 	//another way:
 	cout<<"Another way"<<endl;
 	cout<<(x<<3)<<endl;
@@ -555,20 +591,71 @@ Multiply a given Integer with 3.5:
 ///TODO: 13
 //Find whether a given number is a power of 4 or not
 //if it is power of 2: n&(n-1)==1 and find the set bit's position/length. if position/length is odd then true.
+	class Solution {
+public:
+    bool isPowerOfFour(int n) {
+        
+        //approach: recursive version
+        //Time Complexity: O(log4(n))
+        //Space Complexity: O(log4(n)) : for recursion stack
+        
+        //return ifTrue(n, 1);
+        
+        
+        //approach: bit manipulation
+       /*
+        int andRes;
+        int lenOfN;
+        
+        if(n==0) return false;
+        
+        if(n==INT_MIN) {
+            andRes = n&(n+1); 
+            lenOfN = floor(log2(abs(n+1)))+1;
+        }
+        else {
+            andRes = n&(n-1);
+            lenOfN = floor(log2(abs(n)))+1;
+        }
+        
+        if(andRes==0 and lenOfN%2==1) return true;
+        return false;
+        */
+        
+        //Bit Manipulation: Optimization
+        //all negative numbers is not power of 4
+        //so actually we just need to check 1 to n
+        
+        if(n<1) return false;
+        int andRes = n&(n-1); //here (n&n-1)==0 means it is power of two
+        int lenOfN = floor(log2(n))+1; //1 2 4 8 16 32 64 128 .....-> 2 4 2 4 2 4
+        
+        if(andRes==0 and lenOfN%2==1) return true;
+        return false;
+    }
+private:
+    bool ifTrue(int n, long x){
+        if(x==n) return true;
+        if(x>n) return false;
+        
+        return ifTrue(n, x*4);
+    }
+};
+
 
 
 ///TODO: 14
 //Compute the integer absolute value (abs) without branching
-//for positive number do nothing but for negative number toggle the bit's then add 1 with it. 
+//for positive number do nothing but for negative number toggle the bit's then add 1 with it.
 
 //	mask = n>>31 //the leftmost bit/sign bit(it will be 0 for positive and 1 for negative number)
-	
+
 	//now add n with mask: mask + n : So, if the number is negative 1 will be added with the number else 0 will be added
-	
-	//then xor n with mask: 
-	//so if the number is negative then : mask = 1 and n = n+1 , new n = (n+1)^mask 
+
+	//then xor n with mask:
+	//so if the number is negative then : mask = 1 and n = n+1 , new n = (n+1)^mask
 	//else for positive number mask = 0 and n = n new n = n^0 = n
-	
+
 	int const mask = n >> (sizeof(int) * CHARBIT - 1);
     	return ((n + mask) ^ mask);
 
@@ -579,12 +666,12 @@ Multiply a given Integer with 3.5:
 
 //my initial thought after drawing in paper:  return size of n bit after n xor d
 
-//another solution is : n&(d-1) 
+//another solution is : n&(d-1)
 
 
 ///TODO: 16
 //Minimum or Maximum of two integers:
-//just use bitset array: and iterate from left to right and see if both are negative or both are positive and check bit 
+//just use bitset array: and iterate from left to right and see if both are negative or both are positive and check bit
 //whose bit is 1 and others is 0 is greater and opposite is true of if both numbers are negative
 
 
@@ -594,12 +681,12 @@ Multiply a given Integer with 3.5:
 	cout<<"Rotate bits"<<endl;
 	int n = 16;
 	int d = 2;
-	
+
 	cout<<((n<<d)|(n>>(8-d)))<<endl;
 	cout<<((n>>d)|(n<<(8-d)))<<endl;
-	
+
 //what should you do if you want to rotate the number only, means without 4/8/16/32 bit.
-//Easily, You need to rotate the bit's without leading zero	
+//Easily, You need to rotate the bit's without leading zero
 
 
 
@@ -625,7 +712,7 @@ Do: brute force, hashing, then xor
 
 
 //Time: O(1), Space: O(1)
-=>Sol: There can be overflow only if signs of two numbers are same, and sign of sum is opposite to the signs of numbers. 
+=>Sol: There can be overflow only if signs of two numbers are same, and sign of sum is opposite to the signs of numbers.
 
 int sum = a+b;
 if(a>0 and b>0 and sum<0) return overflow happened;
@@ -638,43 +725,121 @@ return no overflow happened;
 
 ///TODO: 21
 //Reverse Bits of a Number
-
-//7 -->  0111
-if 32 bit integer then:
-	bitset<32> bit(x);
-	for(int i=0;i<16;i++){
-		swap(bit[i], bit[32-i-1]);
+//Time: O(1), Space: O(1)
+unsigned int reverseBit(unsigned int number){
+	unsigned in res = 0;
+	for(int i=0;i<32;i++){
+		int bit = 1&(x>>i);
+		res = res | bit<<(31-i);
 	}
-	return static_cast<int> (bit.to_ulong());
+	return res;
+}
 
 
 
 ///TODO: 22
+//Smallest power of 2 greater than or equal to n
+//5 -> 101 -> 8 -> 1000
+//17 -> 10001 -> 100000
+//so first check if it is power of of or not :n&(n-1)==0 if  then return this number: , otherwise:
+int nextPowerofTwo(int x){
+	if(n!=0 and (x&(x-1))==0) return x;
+	int len = log2(x)+1;
+	//cout<<"len: "<<len<<endl;
+	int res = 0;
+	res |= 1<<len;
 
-
+	return res;
+}
 
 ///TODO: 23
+//Efficient Method to Check if a Number is Multiple of 3
+//Read again: it's multiple of 3 not power of  3
+
+//If the sum of digits in a number is a multiple of 3 then the number is a multiple of 3,
+//e.g., for 612, the sum of digits is 9 so it’s a multiple of 3. But this solution is not efficient.
+
+//Algorithm
+// 1) Get count of all set bits at odd positions (For 23 it’s 3).
+// 2) Get count of all set bits at even positions (For 23 it’s 1).
+// 3) If the difference between the above two counts is a multiple of 3 then the number is also a multiple of 3.
 
 
 
 ///TODO: 24
+// find parity: even or odd parity
+int findPairty(int n ){
+	int i = 0;
+	whille(n){
+		if(1&n) cnt++;
+		n = n>>i;
+		i++;
+	}
 
+	return cnt%2==0; //return even parity
+}
+//efficient way
+int findPairty(int n ){
+	int parity = 0;
+	whille(n){
+		parity = !parity;
+		n = n&(n-1);
+	}
+
+	return parity;
+}
+
+// Initialize: n = 13 (1101)   parity = 0
+// n = 13 & 12  = 12 (1100)   parity = 1
+// n = 12 & 11 = 8  (1000)   parity = 0
+// n = 8 & 7 = 0  (0000)    parity = 1
 
 
 ///TODO: 25
+///Efficient way to multiply with 7
+// First left shift the number by 3 bits (you will get 8n)
+// Then subtract the original number from the shifted number
+// Return the difference (8n – n).
+
+///vreturn ((n<<3) - n);
 
 
 
 ///TODO: 26
-
-
+///Program to find whether a given number is power of 2
+1. return (ceil(log2(n)) == floor(log2(n)));
+2. count the number of set bits . if count is 1 then it is power of 2;
+3. /* First x in the below expression is for the case when x is 0 */
+    return x && (!(x&(x-1)));
+4. Another way is to use the logic to find the rightmost bit set of a given number:
+((n & (~(n - 1))) == n)
+5. Brian Kernighan’s algorithm:
+return (n != 0) && ((n & (n - 1)) == 0);
 
 ///TODO: 27
-
+///Position of rightmost set bit
+log2(n & -n) + 1;
 
 
 
 ///TODO: 28
+///Swap all odd and even bits
+// 1) Get all even bits of x by doing bitwise and of x with 0xAAAAAAAA. The number 0xAAAAAAAA is a 32 bit number with all even bits set as 1 and all odd bits as 0.
+// 2) Get all odd bits of x by doing bitwise and of x with 0x55555555. The number 0x55555555 is a 32 bit number with all odd bits set as 1 and all even bits as 0.
+// 3) Right shift all even bits.
+// 4) Left shift all odd bits.
+// 5) Combine new even and odd bits and return.
+
+// Get all even bits of x
+    unsigned int even_bits = x & 0xAAAAAAAA;
+
+    // Get all odd bits of x
+    unsigned int odd_bits = x & 0x55555555;
+
+    even_bits >>= 1; // Right shift even bits
+    odd_bits <<= 1; // Left shift odd bits
+
+    return (even_bits | odd_bits); // Combine even and odd bits
 
 
 
@@ -700,103 +865,135 @@ if 32 bit integer then:
 
 
 ///TODO: 34
- 
+
 /// TODO: Extra
 /*
- * Divide two integers without using multiplication, division, and 
+ * Divide two integers without using multiplication, division, and
  * mod operator.
  */
  int divide(int dividend, int divisor) {
-     
+
         if(dividend==divisor) return 1;
-       
+
         bool isPositive = (dividend<0 == divisor<0);
         unsigned int a = abs(dividend);
         unsigned int b = abs(divisor);
-        
+
         unsigned int ans = 0;
-        
+
         while(a>=b){
             short q = 0 ;
             while(a>(b<<(q+1))){
                 q++;
             }
-            
+
             a = a-(b<<q);
             ans += (1<< q);
         }
-        
+
         if(ans==INT_MIN and isPositive) return INT_MAX;
-        
+
         return isPositive? ans : -ans;
 	}
- 
- 
- 
+
+
+//////xorBeauty
+	class Solution {
+	public:
+	    int xorBeauty(vector<int>& nums) {
+
+
+	        unordered_map<int, int> mp0;
+	        unordered_map<int, int> mp1;
+
+	        for(int i=0;i<nums.size();i++){
+
+	            int x = nums[i];
+	            for(int j=0;j<32;j++){
+	                int b = (1 & (x >> j));
+	                if(b==0) mp0[j]++;
+	                else mp1[j]++;
+	            }
+	        }
+
+	        string str = "";
+	        for(int i=0;i<32;i++){
+	            if(mp1[i]%2==1) str="1"+str;
+	            else str="0"+str;
+	        }
+	        //cout<<str<<endl;
+
+	        int res = stoi(str, nullptr, 2);;
+
+
+	        return res;
+	    }
+	};
+
 
 
 int main(){
-/*	
+/*
 	//00
 	swapTwoNumber(2, 3);
 
 	//01
 	vector<int> nums = {3, 3, 3, 2, 4, 4, 4, 5, 5, 5};
 	findUniqueElement(nums);
-	
+
 	//02
 	if(checkSignedBit(-2, 4)==true) cout<<"Oposite sign"<<endl;
 	else cout<<"Same sign"<<endl;
-	
+
 	//03
 	int cnt = 0;
 	for(int i=1;i<=8;i++){
 		cnt+=cntTotalSetBit(i);
 	}
 	cout<<cnt<<endl;
-	
+
 	cout<<cntTotalSetBitRecursive(16)<<endl;
-		
+
 	cout<<countSetBitsDP(6)<<endl;
 	*/
-	
-	
+
+
 	//04
-	
-	
-	
+
+
+
 	//05
 	///addTwoNumbers(1, 3);
-	
-	
+
+
 	//06
 	//smallestOfTwo(-5, -7); //approach-01
 	//smallestofTwo2(2, 3); //approach-02
-	
-	
-	
+
+
+
 	//07
 	countSetBits1(10);
-	
-	
+
+
 	//08
-	
-	
-	
+
+
+
 	//09
-	
-	
-	
+
+
+
 	//10
-	
-	
+
+
 	//11
-	
-	
-	
 
 
-	
-	
+
+
+
+
+
 	return 0;
 }

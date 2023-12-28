@@ -22,9 +22,9 @@ list
 
 stack
 queue
-priority_queue
+priority_queueß
 dequeue
- 
+
 set(union, difference, intersection)
 unordered_set
 multiset
@@ -45,14 +45,9 @@ operations on iterators
 //Algorithms in STL
 sorting
 permutation
-combination 
-binary search and equal range 
-upper bound and lower bound 
-
-
-
-
-
+combination
+binary search and equal range
+upper bound and lower bound
 
 
 
@@ -63,8 +58,8 @@ upper bound and lower bound
 
 
 int main(){
-	
-	
-	
-	return 0;
+
+
+
+  return 0;
 }
